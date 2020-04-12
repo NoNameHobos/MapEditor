@@ -10,6 +10,7 @@ public class Engine implements Game{
 	static int WIDTH, HEIGHT;
 	static String TITLE;
 	static Engine ENGINE;
+	Display display;
 	
 	public Engine(int WIDTH, int HEIGHT, String TITLE) {
 		
@@ -18,7 +19,8 @@ public class Engine implements Game{
 		Engine.HEIGHT = HEIGHT;
 		Engine.TITLE = TITLE;
 		
-		new Display(this, WIDTH, HEIGHT);
+		display = new Display(this, WIDTH, HEIGHT);
+		
 		
 	}
 
@@ -49,6 +51,12 @@ public class Engine implements Game{
 	@Override
 	public void update(GameContainer arg0, int arg1) throws SlickException {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public Display getDisplay() {
+	
+		return display;
 		
 	}
 
