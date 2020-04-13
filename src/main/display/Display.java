@@ -1,4 +1,4 @@
-package main;
+package main.display;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
-import main.Engine;
+import main.engine.Engine;
 
 public class Display {
 
@@ -17,8 +17,9 @@ public class Display {
 		try {
 			appgc = new AppGameContainer(engine);
 			appgc.setTargetFrameRate(60);
-			appgc.setShowFPS(true);
+			appgc.setShowFPS(false);
 			appgc.setDisplayMode(WIDTH, HEIGHT, false);
+			appgc.setTitle("Editor");
 			appgc.start();
 		} catch (SlickException ex) {
 			Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);

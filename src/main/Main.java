@@ -1,22 +1,18 @@
 package main;
 
 import java.io.File;
-import java.util.ArrayList;
+
+import main.engine.Engine;
 
 public class Main {
 	
-	public static ArrayList<String> mapData;
+	public static String ABS_PATH;
 	
 	public static void main (String[] args) {
-		System.setProperty("org.lwjgl.librarypath", new File("").getAbsolutePath());
-		mapData = MapLoader.loadMap(new File("").getAbsolutePath() + "\\test_map.map");
-		for(int i = 0; i < mapData.size(); i++) {
-			String line = mapData.get(i);
-			System.out.println(line);
-		}
-		//Engine engine = new Engine(600,400,"The Game");
-        
+		ABS_PATH = new File("").getAbsolutePath();
+		System.setProperty("org.lwjgl.librarypath", ABS_PATH);
 		
+		new Engine(1280,720,"Map Editor");
 	}
 
 }
