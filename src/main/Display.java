@@ -25,4 +25,9 @@ public class Display {
 		}
 	}
 	
+	public AppGameContainer getAppgc() {
+		return appgc;
+		
+	}
+	
 }

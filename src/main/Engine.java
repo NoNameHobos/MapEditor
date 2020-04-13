@@ -1,5 +1,11 @@
 package main;
 
+import java.awt.Font;
+import org.newdawn.slick.TrueTypeFont;
+
+
+import org.newdawn.slick.gui.TextField;
+
 import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -21,7 +27,6 @@ public class Engine implements Game{
 		
 		display = new Display(this, WIDTH, HEIGHT);
 		
-		
 	}
 
 	@Override
@@ -38,13 +43,12 @@ public class Engine implements Game{
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
-		// TODO Auto-generated method stub
 		
 	}
 
