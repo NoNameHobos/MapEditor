@@ -8,34 +8,24 @@ import org.newdawn.slick.geom.Point;
 
 public class MapLoader {
 	
-	static int mapid;
-	static String title = "";
-	static int playerCount;
-	static int height;
-	static int width;
-	static boolean[] flags = new boolean[8];
-	static Point[] spawnLocations;
-	static ArrayList<String> outputData = new ArrayList<String>();
 	
-	private String inputFile;
-	private ArrayList<Integer> byteData = new ArrayList<Integer>();
-	private int step = 0;
-	
-	
-	public MapLoader(String file) {
-		
-		inputFile = file;
-		
-		this.loadMap();
-	
-	}
 
-	public void loadMap() {
-
+	public static ArrayList<String> loadMap(String file) {
+		int mapid;
+		int step = 0;
+		int playerCount;
+		int height;
+		int width;
+		boolean[] flags = new boolean[8];
+		String title = "";
+		Point[] spawnLocations;
+		
+		ArrayList<String> outputData = new ArrayList<String>();
+		ArrayList<Integer> byteData = new ArrayList<Integer>();
+		
 		try {
 			//open file
-			InputStream inputStream = new FileInputStream(inputFile);
-			
+			InputStream inputStream = new FileInputStream(file);
 			int byteRead;
 			
 			//read data
@@ -43,8 +33,6 @@ public class MapLoader {
                 byteData.add(byteRead);
             }
        
-            
-            
 			inputStream.close();
 			
 			//set mapid
@@ -56,7 +44,6 @@ public class MapLoader {
 				title = title + String.valueOf(Character.toChars(byteData.get(i+1)));
 				step++;
 			}
-			
 			title = title.trim();
 			
 			//set playercount
@@ -86,8 +73,6 @@ public class MapLoader {
 			}
 			
 			step++;
-			
-			
 			//get start location
 			
 			for (int i = 0; i < 8; i++) {
@@ -106,7 +91,6 @@ public class MapLoader {
 			}
 			
 			//put tiles in a list
-			
 			ArrayList<Integer> mapList = new ArrayList<Integer>();
 			
 			while (step < byteData.size()-1) {
@@ -121,7 +105,6 @@ public class MapLoader {
 			
 			//break list into a string
 			step = 0;
-			
 			String tempString;
 			for (int y_ = 0; y_ < height; y_++) {
 				
@@ -131,74 +114,16 @@ public class MapLoader {
 					tempString = tempString + " " + Integer.toString(mapList.get(step)-1);
 					
 					step++;
-					
 				}
-				
 				outputData.add(tempString);
-			
 			}
-			
-			for (String s : outputData) {
-			
-				System.out.println(s);
-				
-			}
-			System.out.println(outputData);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	
-	public int getMapID() {
-		
-		return mapid;
-		
-	}
-	
-	public String getTitle() {
-		
-		return title;
-		
-	}
-	
-	public int getPlayerCount() {
-		
-		return playerCount;
-		
-	}
-	
-	public int getHeight() {
-		
-		return height;
-		
-	}
-	
-	public int getWidth() {
-		
-		return width;
-		
-	}
-
-	public boolean[] getFlags() {
-			
-		return flags;
-		
-	}
-	
-	public Point[] getSpawnLocations() {
-		
-		return spawnLocations;
-		
-	}
-
-	public ArrayList<String> getMap() {
 		
 		return outputData;
-		
 	}
-
 }
 
 
