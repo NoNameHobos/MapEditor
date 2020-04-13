@@ -100,7 +100,7 @@ public class MapLoader {
 					tempString += " " + Integer.toString(mapList.get(step)-1);
 					step++;
 				}
-				outputData.add(tempString);
+				outputData.add(tempString.trim());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

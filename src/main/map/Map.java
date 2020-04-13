@@ -1,13 +1,14 @@
 package main.map;
 
+import static main.util.ResourceLoader.TILE_HEIGHT;
+import static main.util.ResourceLoader.TILE_SETS;
+import static main.util.ResourceLoader.TILE_WIDTH;
+
 import java.util.ArrayList;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Point;
-
-import static main.util.ResourceLoader.TILE_WIDTH;
-import static main.util.ResourceLoader.TILE_HEIGHT;
-import static main.util.ResourceLoader.TILE_SETS;
 
 import main.engine.Camera;
 import main.engine.Engine;
@@ -88,9 +89,22 @@ public class Map {
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].length; j++) {
 				Point tilePos = tiles[i][j].getPos();
-				boolean inCam = camera.getRenderRect().contains(tilePos.getX(), tilePos.getY());
-				if (inCam)
-					tiles[i][j].getImage().draw(tilePos.getX() - xOffset, tilePos.getY() - yOffset);
+				
+				float rendX = tilePos.getX() * (float)camera.getZoom();
+				float rendY = tilePos.getY() * (float)camera.getZoom();
+				
+				boolean inCam = camera.getRenderRect().contains(rendX, rendY);
+				if (inCam) {
+					Image image = tiles[i][j].getImage();
+					
+					float x = rendX - xOffset;
+					float y = rendY - yOffset;
+					
+					float width = (float)(image.getWidth() * camera.getZoom());
+					float height = (float)(image.getHeight() * camera.getZoom());
+					
+					image.draw(x, y, width, height);
+				}
 			}
 		}
 	}

@@ -15,6 +15,7 @@ public class Camera {
 	private Rectangle cameraRect, viewRect;
 	
 	private Map map;
+	private double zoom = 1;
 	
 	public Camera(Map map, Point pos, float width, float height) {
 		if(pos.getX() < 0) pos.setX(0);
@@ -60,7 +61,7 @@ public class Camera {
 		int yDir = 0;
 		
 		Input input = Engine.getInput();
-		
+				
 		if(input.isKeyDown(Input.KEY_S))
 			yDir = mspeed;
 		else if(input.isKeyDown(Input.KEY_W))
@@ -87,4 +88,7 @@ public class Camera {
 		return viewRect;
 	}
 	
+	public double getZoom() {
+		return zoom;
+	}
 }
