@@ -27,6 +27,8 @@ public class Map {
 	
 	private Camera camera;
 	
+	private Point[] spawns;
+	
 	public Map(String title, String tileSet, ArrayList<String> mapData) {
 
 		tileset = TILE_SETS.get(tileSet);
@@ -46,12 +48,14 @@ public class Map {
 	}
 	
 	public void init() {
-		String[][] tileData = new String[mapHeight][mapWidth];
-
-		for(int i = 0; i < mapHeight; i++) {
-			tileData[i] = mapData.get(i).split(" ");
+		if(tiles == null) {
+			String[][] tileData = new String[mapHeight][mapWidth];
+	
+			for(int i = 0; i < mapHeight; i++) {
+				tileData[i] = mapData.get(i).split(" ");
+			}
+			loadTiles(tileData);
 		}
-		loadTiles(tileData);
 	}
 	
 	public void loadTiles(String[][] tileData) {
@@ -119,6 +123,14 @@ public class Map {
 
 	public int getMapHeight() {
 		return mapHeight;
+	}
+
+	public Point[] getSpawns() {
+		return spawns;
+	}
+
+	public void setSpawns(Point[] spawns) {
+		this.spawns = spawns;
 	}
 
 }

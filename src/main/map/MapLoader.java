@@ -16,7 +16,8 @@ public class MapLoader {
 		int width;
 		boolean[] flags = new boolean[8];
 		String title = "";
-		Point[] spawnLocations;
+		Map m = null;
+		
 		
 		ArrayList<String> outputData = new ArrayList<String>();
 		ArrayList<Integer> byteData = new ArrayList<Integer>();
@@ -46,7 +47,7 @@ public class MapLoader {
 			
 			//set playercount
 			playerCount = byteData.get(step);
-			spawnLocations = new Point[playerCount];
+			Point[] spawnLocations = new Point[playerCount];
 			step++;
 			
 			//get height
@@ -102,11 +103,11 @@ public class MapLoader {
 				}
 				outputData.add(tempString.trim());
 			}
+			m = new Map(title, "grass", outputData);
+			m.setSpawns(spawnLocations);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		Map m = new Map(title, "grass", outputData);
 		
 		return m;
 	}
